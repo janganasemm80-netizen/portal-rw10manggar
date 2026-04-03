@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Web RW 10</title>
+    <style>
+        /* Pengaturan Gaya Dasar (CSS) */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+        header {
+            background-color: #2c3e50;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+        nav {
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            padding: 10px;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 5px;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        nav a:hover {
+            background-color: #1abc9c;
+        }
+        .container {
+            max-width: 800px;
+            margin: 30px auto;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .pengumuman {
+            background-color: #e8f8f5;
+            padding: 15px;
+            border-left: 5px solid #1abc9c;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+        .form-lapor {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-lapor label {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .form-lapor input, .form-lapor textarea {
+            padding: 12px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        .form-lapor button {
+            margin-top: 20px;
+            padding: 12px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .form-lapor button:hover {
+            background-color: #2ecc71;
+        }
+        
+        /* Gaya Khusus untuk Daftar Laporan */
+        #daftar-laporan {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px dashed #bdc3c7;
+        }
+        .item-laporan {
+            background-color: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .item-laporan h4 {
+            margin: 0 0 5px 0;
+            color: #2980b9;
+        }
+        .item-laporan .waktu {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+        .item-laporan p {
+            margin: 10px 0 0 0;
+            line-height: 1.5;
+        }
+        .pesan-kosong {
+            color: #95a5a6;
+            font-style: italic;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #bdc3c7;
+            color: #2c3e50;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Portal Informasi RW 10</h1>
+        <p>Guyub, Rukun, dan Sejahtera</p>
+    </header>
+
+    <nav>
+        <a href="#beranda">Beranda</a>
+        <a href="#pengumuman">Pengumuman</a>
+        <a href="#lapor">Lapor Pak RT/RW</a>
+        <a href="#daftar-laporan">Lihat Laporan Warga</a>
+    </nav>
+
+    <div class="container">
+        
+        <div id="beranda">
+            <h2>Selamat Datang di Portal RW 10</h2>
+            <p>Website ini dibuat untuk memudahkan komunikasi dan penyebaran informasi antara pengurus RW dan warga. Mari kita jaga lingkungan kita agar tetap aman, bersih, dan harmonis.</p>
+        </div>
+
+        <div id="pengumuman">
+            <h2>📢 Papan Pengumuman</h2>
+            <div class="pengumuman">
+                <strong>Kerja Bakti Rutin Bulanan</strong><br>
+                Hari/Tanggal: Minggu, 12 April 2026<br>
+                Waktu: 07.00 WIB - Selesai<br>
+                Lokasi: Wilayah masing-masing RT, terutama saluran air<br>
+                <em>Mohon partisipasi seluruh warga untuk membawa alat kebersihan masing-masing.</em>
+			<div class="pengumuman">
+				<strong>Halal bi Halal</strong><br>
+				Hari/Tanggal: Minggu, 10 April 2026<br>
+                Waktu: 19.00 WIB - Selesai<br>
+                Lokasi: Rumah Bapak Gatot RT 04<br>
+				<em>Mohon partisipasi seluruh warga untuk membawa alat rokok surya</em>
+            </div>
+        </div>
+
+        <div id="lapor">
+            <h2>✉️ Kotak Saran & Laporan Warga</h2>
+            <p>Ada fasilitas umum yang rusak? Atau ada saran untuk lingkungan kita? Silakan isi formulir di bawah ini.</p>
+            
+            <form class="form-lapor" id="formLaporan" onsubmit="kirimLaporan(event)">
+                <label for="nama">Nama Lengkap:</label>
+                <input type="text" id="nama" placeholder="Masukkan nama Anda" required>
+
+                <label for="rt">Asal RT:</label>
+                <input type="text" id="rt" placeholder="Contoh: RT 03" required>
+
+                <label for="pesan">Pesan/Laporan:</label>
+                <textarea id="pesan" rows="5" placeholder="Tuliskan detail laporan atau saran Anda di sini..." required></textarea>
+
+                <button type="submit">Kirim Laporan</button>
+            </form>
+        </div>
+
+        <div id="daftar-laporan">
+            <h2>📋 Daftar Laporan Warga</h2>
+            <div id="listLaporan">
+                </div>
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Pengurus RW 10. Dikelola oleh Karang Taruna.
+    </footer>
+
+    <script>
+        // Mengambil data laporan yang tersimpan di memori browser (jika ada)
+        let dataLaporan = JSON.parse(localStorage.getItem('laporanRW01')) || [];
+
+        // Fungsi untuk menampilkan laporan ke layar
+        function tampilkanLaporan() {
+            const listDiv = document.getElementById('listLaporan');
+            listDiv.innerHTML = ''; // Bersihkan area sebelum dimuat ulang
+
+            if (dataLaporan.length === 0) {
+                listDiv.innerHTML = '<p class="pesan-kosong">Belum ada laporan dari warga saat ini.</p>';
+                return;
+            }
+
+            // Membaca array dari belakang agar laporan terbaru muncul di atas
+            for (let i = dataLaporan.length - 1; i >= 0; i--) {
+                const item = dataLaporan[i];
+                
+                // Membuat elemen kotak untuk setiap laporan
+                const elemenLaporan = document.createElement('div');
+                elemenLaporan.className = 'item-laporan';
+                elemenLaporan.innerHTML = `
+                    <h4>${item.nama} - <span>${item.rt}</span></h4>
+                    <span class="waktu">${item.waktu}</span>
+                    <p>${item.pesan}</p>
+                `;
+                
+                // Menempelkan kotak ke dalam layar web
+                listDiv.appendChild(elemenLaporan);
+            }
+        }
+
+        // Jalankan fungsi tampilkan laporan saat web pertama kali dibuka
+        tampilkanLaporan();
+
+        // Fungsi untuk mengirim laporan
+        function kirimLaporan(event) {
+            event.preventDefault(); // Mencegah web loading ulang
+            
+            // Ambil data dari formulir
+            const namaInput = document.getElementById('nama').value;
+            const rtInput = document.getElementById('rt').value;
+            const pesanInput = document.getElementById('pesan').value;
+            
+            // Dapatkan waktu saat ini
+            const waktuSekarang = new Date().toLocaleString('id-ID');
+
+            // Buat objek data baru
+            const laporanBaru = {
+                nama: namaInput,
+                rt: rtInput,
+                pesan: pesanInput,
+                waktu: waktuSekarang
+            };
+
+            // Masukkan data baru ke dalam array
+            dataLaporan.push(laporanBaru);
+            
+            // Simpan array yang sudah diperbarui ke memori browser
+            localStorage.setItem('laporanRW01', JSON.stringify(dataLaporan));
+
+            // Notifikasi sukses
+            alert("Laporan berhasil ditambahkan!");
+            
+            // Kosongkan formulir dan perbarui tampilan daftar laporan
+            document.getElementById('formLaporan').reset();
+            tampilkanLaporan();
+        }
+    </script>
+
+</body>
+</html>
